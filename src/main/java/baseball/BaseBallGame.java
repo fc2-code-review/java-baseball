@@ -53,10 +53,7 @@ public class BaseBallGame {
     }
 
     private boolean matchSameIndex(String comNums, String playerNums, int index) {
-        if (comNums.charAt(index) == playerNums.charAt(index))
-            return true;
-        else
-            return false;
+        return comNums.charAt(index) == playerNums.charAt(index);
     }
 
     private boolean matchDifferentIndex(String comNums, String playerNums, int index) {
@@ -79,15 +76,11 @@ public class BaseBallGame {
     }
 
     private String printStrike() {
-        if (strike == 0)
-            return "";
-        return strike + " 스트라이크 ";
+        return strike == 0 ? "" : strike + " 스트라이크";
     }
 
     private String printBall() {
-        if (ball == 0)
-            return "";
-        return ball + " 볼";
+        return ball == 0 ? "" : ball + " 볼";
     }
 
     private boolean isGameClear() {
@@ -105,8 +98,8 @@ public class BaseBallGame {
                 return true;
             else if (command == END)
                 return false;
-            else
-                System.out.println("잘못 입력하셨습니다.");
+
+            System.out.println("잘못 입력하셨습니다.");
         }
     }
 }

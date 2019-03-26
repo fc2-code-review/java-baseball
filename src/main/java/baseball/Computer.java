@@ -16,7 +16,7 @@ public class Computer {
             int digit = (int) (Math.random() * 9) + 1;
             sbDigits.append(digit);
 
-            if (Validation.isAllDigitsDefferent(sbDigits.toString(), cnt+1))
+            if (Validation.isAllDigitsDifferent(sbDigits.toString(), cnt+1))
                 cnt++;
             else
                 sbDigits.deleteCharAt(cnt);

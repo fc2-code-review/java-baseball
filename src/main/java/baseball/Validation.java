@@ -6,7 +6,7 @@ public class Validation {
         return (isNotNull(digits)
                 && isEqualLength(digits, length)
                 && isAllDigitsBetweenOneAndNine(digits)
-                && isAllDigitsDefferent(digits, length));
+                && isAllDigitsDifferent(digits, length));
     }
 
     public static boolean isNotNull(String digits) {
@@ -17,7 +17,7 @@ public class Validation {
         return digits.length() == length;
     }
 
-    public static boolean isAllDigitsDefferent(String digits, int length) {
+    public static boolean isAllDigitsDifferent(String digits, int length) {
         for (int i = 0; i < length - 1; i++) {
             for (int j = i + 1; j < length; j++) {
                 if (digits.charAt(i) == digits.charAt(j))
