@@ -80,11 +80,11 @@ public class BaseBallGame {
     }
 
     private String printStrike() {
-        return strike == 0 ? "" : strike + " 스트라이크";
+        return (strike == 0) ? "" : strike + " 스트라이크";
     }
 
     private String printBall() {
-        return ball == 0 ? "" : ball + " 볼";
+        return (ball == 0) ? "" : ball + " 볼";
     }
 
     private boolean isGameClear() {
