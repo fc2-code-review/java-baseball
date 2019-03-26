@@ -1,0 +1,112 @@
+package baseball;
+
+import java.util.Scanner;
+
+public class BaseBallGame {
+    private final static int RESTART = 1;
+    private final static int END = 2;
+    private final int DIGIT_LENGTH; // 숫자 개수
+    private int ball;
+    private int strike;
+    private Computer computer;
+    private Player player;
+
+    public BaseBallGame(int digitLength) {
+        this.DIGIT_LENGTH = digitLength;
+        this.computer = new Computer(digitLength);
+        this.player = new Player(digitLength);
+    }
+
+    public void run() {
+        do {
+            start();
+        } while (restart());
+    }
+
+    public void start() {
+
+        computer.generateDigits();
+        System.out.println(computer.getDigits());
+
+        do {
+            player.inputDigits();
+
+            compareDigits(computer.getDigits(), player.getDigits());
+
+            System.out.println(printResult());
+        } while (!isGameClear());
+
+        System.out.println(DIGIT_LENGTH + "개의 숫자를 모두 맞히셨습니다! 게임 종료");
+    }
+
+
+    public void compareDigits(String comNums, String playerNums) {
+        ball = 0;
+        strike = 0;
+
+        for (int i = 0; i < DIGIT_LENGTH; i++) {
+            if (matchSameIndex(comNums, playerNums, i))
+                strike++;
+            else if (matchDifferentIndex(comNums, playerNums, i))
+                ball++;
+        }
+    }
+
+    private boolean matchSameIndex(String comNums, String playerNums, int index) {
+        if (comNums.charAt(index) == playerNums.charAt(index))
+            return true;
+        else
+            return false;
+    }
+
+    private boolean matchDifferentIndex(String comNums, String playerNums, int index) {
+        for (int i = 0; i < DIGIT_LENGTH; i++) {
+            if (i != index && playerNums.charAt(index) == comNums.charAt(i))
+                return true;
+        }
+        return false;
+    }
+
+    private String printResult() {
+        if (isNothing())
+            return "낫싱";
+
+        return printStrike() + printBall();
+    }
+
+    private Boolean isNothing() {
+        return strike == 0 && ball == 0;
+    }
+
+    private String printStrike() {
+        if (strike == 0)
+            return "";
+        return strike + " 스트라이크 ";
+    }
+
+    private String printBall() {
+        if (ball == 0)
+            return "";
+        return ball + " 볼";
+    }
+
+    private boolean isGameClear() {
+        return strike == DIGIT_LENGTH;
+    }
+
+    private boolean restart() {
+        Scanner sc = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+
+            int command = sc.nextInt();
+            if (command == RESTART)
+                return true;
+            else if (command == END)
+                return false;
+            else
+                System.out.println("잘못 입력하셨습니다.");
+        }
+    }
+}
