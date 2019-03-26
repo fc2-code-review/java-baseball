@@ -41,8 +41,7 @@ public class BaseBallGame {
 
 
     public void compareDigits(String comNums, String playerNums) {
-        ball = 0;
-        strike = 0;
+        initBallAndStrike();
 
         for (int i = 0; i < DIGIT_LENGTH; i++) {
             if (matchSameIndex(comNums, playerNums, i))
@@ -50,6 +49,11 @@ public class BaseBallGame {
             else if (matchDifferentIndex(comNums, playerNums, i))
                 ball++;
         }
+    }
+
+    private void initBallAndStrike() {
+        ball = 0;
+        strike = 0;
     }
 
     private boolean matchSameIndex(String comNums, String playerNums, int index) {
